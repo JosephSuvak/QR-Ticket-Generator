@@ -29,10 +29,11 @@ const sess = {
 app.use(session(sess));
 
 //helper functions later for handlebars as we make them
-const helpers = require('./utils/helpers');
+// const helpers = require('./utils/helpers');
+
 
 //handlebars using helper functions
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({ });
 
 //set handlebars as view engine
 app.engine('handlebars', hbs.engine);
