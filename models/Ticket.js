@@ -22,10 +22,10 @@ Ticket.init(
         key: 'id'
       }
     },
-    show_id : {
+    concert_id : {
         type: DataTypes.INTEGER,
         references: {
-            model: 'show',
+            model: 'concert',
             key: 'id'
         }
     }
