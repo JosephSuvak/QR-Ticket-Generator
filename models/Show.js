@@ -42,3 +42,5 @@ underscored: true,
 modelName: 'show'
 }
 )
+
+module.exports = Show;

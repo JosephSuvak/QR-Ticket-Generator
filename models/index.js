@@ -25,3 +25,5 @@ Ticket.belongsTo(Show, {
     foreignKey: 'show_id',
     onDelete: 'SET NULL'
 })
+
+module.exports = { User, Ticket, Show };
