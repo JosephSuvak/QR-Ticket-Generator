@@ -31,7 +31,7 @@ const sess = {
 app.use(session(sess));
 
 //helper functions later for handlebars as we make them
-// const helpers = require('./utils/helpers');
+const helpers = require('./utils/helpers');
 
 
 //handlebars using helper functions

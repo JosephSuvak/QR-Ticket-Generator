@@ -1,0 +1,16 @@
+{{#if tickets.length}}
+<section>
+  <h2 class="m-2 h-10 font-bold leading-tight text-2xl text-gray-800">Your Tickets</h2>
+  <ol class="space-y-4">
+    {{#each tickets as |ticket|}}
+    <li>
+      {{> ticket-info ticket}}
+      
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+<a href="/account/buy-tickets"
+  class="m-2 inline-block align-baseline font-bold text-xl text-black hover:text-red-600 border rounded shadow-sm p-3 edit-link">Want to go to a new show?</a>

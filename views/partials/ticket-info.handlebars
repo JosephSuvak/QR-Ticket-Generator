@@ -1,0 +1,20 @@
+<div class="ticket md:flex md:-mx-4">
+  <div class="w-full mb-2 md:w-full md:mx-4 lg:w-full border rounded shadow-sm">
+    <div class="px-4 py-4">
+      <div>
+          <h3 class="font-semibold leading-tight text-2xl text-gray-800 hover:text-red-600">
+            {{concert.concert_name}}
+          </h3>
+        </a>
+      </div>
+      <hr class="border-gray-200 my-1 border-bottom" style="border: top width 1px;">
+      <p class="text-lg text-gray-900">
+        {{ concert.venue_name }}
+      </p>
+      <div class='flex text-gray-700 text-md '>
+        <div>Purchased on <span class="text-red-400">{{format_date created_at}}</span></div>
+        <hr class="border-gray-200 my-1 border-bottom" style="border: top width 1px;">
+      </div>
+    </div>
+  </div>
+</div>
