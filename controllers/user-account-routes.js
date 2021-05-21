@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { User, Ticket, Concert } = require('../../models');
 
 // getting all users...
-router.get('/', (req, res) => {
+router.get('/user', (req, res) => {
     User.findAll({
         attributes: { exclude: ['password'] }
     })
@@ -33,3 +33,5 @@ router.get('/:id', (req, res) => {
         ]
     })
 });
+
+module.exports = router;

@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 
-// const seedAll = require('./seeds/seed-index');
+//const seedAll = require('./seeds/seed-index');
 
 
 const app = express();
@@ -47,12 +47,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //controllers and api for handlebars
-//app.use(require('./controllers/'));
+app.use("/", require('./controllers/'));
 
-// app.use(seedAll);
+//app.use(seedAll);
 
 
 //database and server
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
+
+
+module.exports = sequelize;
