@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// Create Show Model
+// Create Concert Model
 //-------------------
 class Concert extends Model { }
 
-// Create Show Fields
+// Create Concert Fields
 //--------------------
 Concert.init(
   {
