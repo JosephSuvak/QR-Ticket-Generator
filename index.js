@@ -35,7 +35,7 @@ const helpers = require('./utils/helpers');
 
 
 //handlebars using helper functions
-const hbs = exphbs.create({ });
+const hbs = exphbs.create({ helpers });
 
 //set handlebars as view engine
 app.engine('handlebars', hbs.engine);
