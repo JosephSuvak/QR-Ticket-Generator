@@ -6,7 +6,7 @@ async function signupFormHandler(event) {
   const password = document.querySelector('#password-signup').value.trim();
 
   if (email && password) {
-    const response = await fetch('/api/users', {
+    const response = await fetch('/api/user', {
       method: 'POST',
       body: JSON.stringify({
         email,
@@ -17,7 +17,7 @@ async function signupFormHandler(event) {
     //if we have both username and password and the user was successfully created take them to their 
     //dashboard to make their first post
     if (response.ok) {
-      document.location.replace('/account/');
+      document.location.replace('/account');
     } else {
       alert(response.statusText);
     }

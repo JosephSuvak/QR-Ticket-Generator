@@ -37,6 +37,8 @@ router.get('/', withAuth, (req, res) => {
         });
 });
 
+
+
 // getting all users...
 router.get('/user', (req, res) => {
     User.findAll({
@@ -48,6 +50,7 @@ router.get('/user', (req, res) => {
             res.status(500).json(err);
         });
 });
+
 // getting users by id...
 router.get('/:id', (req, res) => {
     User.findOne({

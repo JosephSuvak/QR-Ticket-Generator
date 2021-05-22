@@ -33,6 +33,28 @@ router.get('/:id', (req, res) => {
     })
 });
 
+//create user
+router.post('/', (req, res) => {
+    User.create({
+        email: req.body.email,
+        password: req.body.password
+    })
+        .then(dbUserData => {
+            //create cookie session
+            req.session.save(() => {
+                req.session.user_id = dbUserData.id;
+                req.session.email = dbUserData.email;
+                req.session.loggedIn = true;
+
+                res.json(dbUserData);
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
 //login user: need to create a session and we can't find their id until we 
 //have access in another way so, email
 router.post('/login', (req, res) => {
@@ -69,6 +91,18 @@ router.post('/login', (req, res) => {
         console.log(err);
         res.status(500).json(err);
     })
+});
+
+//logout user and destroy cookie session
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    }
+    else {
+        res.status(404).end();
+    }
 });
 
 module.exports = router;

@@ -2,10 +2,10 @@
   <div class="absolute z-30 flex w-full h-full">
     <div class="relative z-30 w-5/6 px-6 py-8 text-white md:py-10 md:w-1/2 sm:py-4 sm:w-full">
       <h2 class="text-2xl text-black font-mono font-thin">
-        {{concert.concert_name}}
+        {{concert_name}}
       </h2>
       <p class="text-lg font-mono text-black">
-        Live at: {{ concert.venue_name }}
+        Live at: {{ venue_name }}
       </p>
       <p class="font-mono text-black">
         Purchased on
@@ -13,7 +13,10 @@
           {{format_date created_at}}
         </span>
       </p>
-      <button class="text-black bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 text-xl font-extrabold rounded-xl p-2 m-2" type="submit">Get QR Code</button>
+      <p class="font-mono text-red-400">Left in stock: {{stock}}</p>
+      <button
+        class="text-black bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 text-xl font-extrabold rounded-xl p-2 m-2"
+        type="submit">Get QR Code</button>
     </div>
     <div class="absolute top-0 right-0 flex w-full h-full">
       <div class="w-1/3 h-full bg-white"></div>
@@ -29,6 +32,6 @@
     </div>
   </div>
   <div class="absolute top-0 right-0 block w-9/12 h-full">
-    <img alt="neon ticket sign" class="object-cover w-screen h-96" src="/assets/images/neon_ticket.jpg" />
+    <img alt="neon ticket sign" class="object-cover w-screen h-96" src="/assets/images/crowd_control.jpg" />
   </div>
 </div>

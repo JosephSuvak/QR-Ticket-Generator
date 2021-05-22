@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 //sign up link unless there is already a session
 router.get('/signup', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect('/account');
     return;
   }
   res.render('signup');
@@ -37,7 +37,7 @@ router.get('/signup', (req, res) => {
 //login unless there is already a session then take to homepage
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect('/account');
     return;
   }
   //render handlebars login page
