@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "jest"
+    "test": "jest",
+    "build": "postcss public/src/style.css -o public/stylesheets/style.css",
+    "prod": "NODE_ENV=production postcss src/style.css -o public/stylesheets/style.css",
+    "seedDev": "node seeds/seed-index.js && npm run dev"
+    
   },
   "repository": {
     "type": "git",
