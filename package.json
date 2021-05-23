@@ -2,7 +2,8 @@
   "name": "qr-ticket-generator",
   "version": "1.0.0",
   "engines": {
-    "node": "12.18.0"
+    "node": "12.18.0",
+    "npm": "6.14.4"
   },
   "description": "Concert ticket QR code generator",
   "main": "index.js",
