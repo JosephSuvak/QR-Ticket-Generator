@@ -7,6 +7,7 @@ A simple CMS-style website, with a focus on MVC systems in the architectural str
 
 You can access more badges and their purposes at [shields.io](https://shields.io)
 
+
 ## Table of Contents
   * [The Application](#Application)
   * [Developer Roles](#Roles)
@@ -20,7 +21,13 @@ You can access more badges and their purposes at [shields.io](https://shields.io
   ### Table of Contents
   * [User Login or Sign Up](#Login)
   * [User's Account](#User_Account)
-
+  * [Local Development](#Local_Development)
+## Local_Development 
+- clone the repo
+- Set up mysql running on port 3306
+- Run `npm install`
+- run `npm start` either provide env vars in config/connection.js or hard code them. (dont commit hard coded vars)
+- open up localhost:3001 in browser 
   <p>&nbsp</p>
 
   ### Login
