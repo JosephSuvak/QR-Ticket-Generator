@@ -4,12 +4,12 @@ async function concert() {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' }
   });
-  //after logout take back to home page
+  //after logout take back to account page
   if (response.ok) {
     document.location.replace('api/concert');
   } else {
     alert(response.statusText);
   }
 }
-//listener for logout button
+//listener for concert list button
 document.querySelector('#concert').addEventListener('click', concert);

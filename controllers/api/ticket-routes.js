@@ -2,6 +2,7 @@
 
 const router = require('express').Router();
 const { Ticket, User, Concert } = require('../../models');
+const chalk = require('chalk');
 
 // getting all tickets...
 router.get('/', (req, res) => {
@@ -32,17 +33,49 @@ router.get('/:id', (req, res) => {
             }
         ]
     })
-    .then(dbTicketData => {
-        if(!dbTicketData) {
-            res.status(404).json({ message: 'No ticket found with this id' });
-            return;
-        }
-        res.json(dbTicketData);
-    })
+        .then(dbTicketData => {
+            if (!req.session.loggedIn) {
+                res.render('login');
+                return;
+            }
+            if (!dbTicketData) {
+                console.log(chalk.redBright('No ticket located.'))
+            }
+            const ticket = dbTicketData.get({ plain: true });
+            //render handlebars home page
+            res.render('single_ticket', {
+                ticket,
+                loggedIn: req.session.loggedIn,
+                user_id: req.session.user_id
+            });
+        })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     })
 });
+
+//delete ticket
+router.delete('/:id', (req, res) => {
+    Ticket.destroy(
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbTicketData => {
+        if (!dbTicketData) {
+            res.status(404).json({ message: 'No ticket found with this id' });
+            return;
+        }
+            res.json(dbTicketData);
+            res.render('/account/');
+    })
+        .catch(err => {
+            console.log(chalk.cyanBright(err + ' This error is in ticket-routes.js delete ticket route.'));
+            res.status(500).json(err);
+        });
+})
 
 module.exports = router;

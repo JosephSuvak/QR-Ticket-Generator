@@ -1,0 +1,23 @@
+{{#unless concert}}
+<div class="flex justify-center">
+  <h3 class="m-5 text-5xl text-red-500 font-mono font-extrabold">No concerts found currently, very sad.</h3>
+</div>
+{{/unless}}
+{{#if concert}}
+<section>
+  <input name="singleConcertUser" class="hidden" type="text" value="{{user_id}}">
+  <ol id="single_concert" class="space-y-4">
+    <li id="{{concert.id}}">
+      <input name="singleConcertID" class="hidden" type="text" value="{{concert.id}}">
+      {{> concert-info concert}}
+      <div class="m-4 text-black">
+        <button
+          class="text-black bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 text-xl font-extrabold rounded-xl p-2 m-4">ADD SHOW TO MY ACCOUNT</button>
+      </div>
+    </li>
+    
+  </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/add_ticket.js"></script>
