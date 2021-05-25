@@ -28,17 +28,18 @@ async function newTicketHandler(event) {
   }
 }
 
-const stockDecreaser = () => {
-  const oldStock = document.querySelector('#stock').value;
+async function removeTicketFromStockHandler(event) {
+  event.preventDefault();
 
+  const oldStock = document.querySelector('#stock').value; 
+  // Get new stock (current - 1);
   const stock = oldStock - 1;
-
-  const concert_id = document.querySelector('input[name="singleConcertID]').value
-
-  fetch(`/api/concert/${concert_id}`, {
+  console.log(oldStock);
+  console.log(stock);
+    fetch(`/api/concert/${concert_id}`, {
     method: 'PUT',
     body: JSON.stringify({
-      stock
+      stock: stock
     }),
     headers: {
       'Content-Type': 'application/json'
@@ -52,5 +53,32 @@ const stockDecreaser = () => {
     console.log(err);
   });
 }
+
+
+// const stockDecreaser = () => {
+//   const oldStock = document.querySelector('#stock').value;
+
+//   const stock = oldStock - 1;
+
+//   console.log(stock);
+//   const concert_id = document.querySelector('input[name="singleConcertID]').value
+
+//   fetch(`/api/concert/${concert_id}`, {
+//     method: 'PUT',
+//     body: JSON.stringify({
+//       stock
+//     }),
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//   .then(ConcertDataResponse => {
+//     console.log(ConcertDataResponse);
+
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+//}
 //create new post listener
-document.querySelector('#single_concert').addEventListener('click', newTicketHandler);
+document.querySelector('#single_concert').addEventListener('click', newTicketHandler, removeTicketFromStockHandler);

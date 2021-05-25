@@ -66,7 +66,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Updating concerts stock
-router.put('/:id', withAuth, (req, res) => {
+router.put('/:id',(req, res) => {
     Concert.update(
         {
             stock: req.body.stock
