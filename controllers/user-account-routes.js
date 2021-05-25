@@ -4,13 +4,14 @@ const { User, Ticket, Concert } = require('../models');
 //check for a cookie session before giving them access
 const withAuth = require('../utils/auth');
 const chalk = require('chalk');
+const QRCode = require('qrcode');
 
 
 // get all tickets for user account
 router.get('/', withAuth, (req, res) => {
     console.log('======================');
     console.log(chalk.cyan(req.session.user_id));
-    
+
     Ticket.findAll({
         where: {
             user_id: req.session.user_id
@@ -42,6 +43,20 @@ router.get('/', withAuth, (req, res) => {
 
 //add a ticket to user account through concert_id
 router.post('/add', (req, res) => {
+    const concert = req.body.concert;
+
+    const qr = (concert) => {
+        QRCode.toFile('public/assets/images/qr_code_ticket.png',`${concert}`, {
+            color: {
+                dark: '#00F',  // Blue dots
+                light: '#0000' // Transparent background
+            }
+        }, function (err) {
+            if (err) throw err
+            console.log(chalk.cyanBright('all done, check image file'));
+        });
+    }
+    qr(concert);
     Ticket.create({
         user_id: req.body.user_id,
         concert_id: req.body.concert_id
@@ -54,6 +69,12 @@ router.post('/add', (req, res) => {
             console.log(chalk.redBright(err + 'This error is coming from user-account-routes.js, in the Ticket.create method.'));
             res.status(500).json(err);
         });
+
+})
+
+//qr code for ticket
+router.get('/qr_code', (req, res) => {
+    res.render('qr_code');
 })
 
 

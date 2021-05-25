@@ -25,7 +25,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Concert,
-                attributes: ['id', 'venue_name', 'concert_name']
+                attributes: ['id', 'venue_name', 'concert_name', 'created_at']
             },
             {
                 model: User,
@@ -77,5 +77,6 @@ router.delete('/:id', (req, res) => {
             res.status(500).json(err);
         });
 })
+
 
 module.exports = router;

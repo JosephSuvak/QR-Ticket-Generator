@@ -8,12 +8,15 @@ async function newTicketHandler(event) {
 
   const concert_id = document.querySelector('input[name="singleConcertID"]').value;
 
+  const concert = document.querySelector('input[name="concertName"]').value;
+
   //create new
   const response = await fetch(`/account/add`, {
     method: 'POST',
     body: JSON.stringify({
       user_id,
-      concert_id
+      concert_id,
+      concert
     }),
     headers: {
       'Content-Type': 'application/json'
