@@ -4,7 +4,6 @@ const { User, Ticket, Concert } = require('../models');
 //check for a cookie session before giving them access
 const withAuth = require('../utils/auth');
 const chalk = require('chalk');
-const QRCode = require('qrcode');
 
 
 // get all tickets for user account
@@ -33,6 +32,7 @@ router.get('/', withAuth, (req, res) => {
         //render all tickets to the account that belong to the current user
         .then(dbTicketData => {
             const tickets = dbTicketData.map(ticket => ticket.get({ plain: true }));
+
             res.render('account', { tickets, loggedIn: true });
         })
         .catch(err => {
@@ -43,20 +43,6 @@ router.get('/', withAuth, (req, res) => {
 
 //add a ticket to user account through concert_id
 router.post('/add', (req, res) => {
-    const concert = req.body.concert;
-
-    const qr = (concert) => {
-        QRCode.toFile('public/assets/images/qr_code_ticket.png',`${concert}`, {
-            color: {
-                dark: '#00F',  // Blue dots
-                light: '#0000' // Transparent background
-            }
-        }, function (err) {
-            if (err) throw err
-            console.log(chalk.cyanBright('all done, check image file'));
-        });
-    }
-    qr(concert);
     Ticket.create({
         user_id: req.body.user_id,
         concert_id: req.body.concert_id
@@ -70,14 +56,7 @@ router.post('/add', (req, res) => {
             res.status(500).json(err);
         });
 
-})
-
-//qr code for ticket
-router.get('/qr_code', (req, res) => {
-    res.render('qr_code');
-})
-
-
+});
 
 // getting all users...
 router.get('/user', (req, res) => {

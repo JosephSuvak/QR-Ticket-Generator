@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
                 return;
             }
             if (!dbTicketData) {
-                console.log(chalk.redBright('No ticket located.'))
+                console.log(chalk.redBright('No ticket located this is ticket-routes.'))
             }
             const ticket = dbTicketData.get({ plain: true });
             //render handlebars home page
@@ -49,11 +49,11 @@ router.get('/:id', (req, res) => {
                 user_id: req.session.user_id
             });
         })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
-});
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+    });
 
 //delete ticket
 router.delete('/:id', (req, res) => {
