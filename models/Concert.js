@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// Create Show Model
+// Create Concert Model
 //-------------------
 class Concert extends Model { }
 
-// Create Show Fields
+// Create Concert Fields
 //--------------------
 Concert.init(
   {
@@ -23,6 +23,13 @@ Concert.init(
       }
     },
     concert_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    concert_date: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
