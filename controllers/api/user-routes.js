@@ -1,9 +1,10 @@
 // api routes to get data from the user table
 const router = require('express').Router();
 const { User, Ticket, Concert } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // getting all users...
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     User.findAll({
         attributes: { exclude: ['password'] }
     })
@@ -14,7 +15,7 @@ router.get('/', (req, res) => {
         });
 });
 // getting users by id...
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
     User.findOne({
         attributes: { exclude: ['password'] },
         where: {
@@ -34,7 +35,7 @@ router.get('/:id', (req, res) => {
 });
 
 //create user
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     User.create({
         email: req.body.email,
         password: req.body.password
@@ -57,7 +58,7 @@ router.post('/', (req, res) => {
 
 //login user: need to create a session and we can't find their id until we 
 //have access in another way so, email
-router.post('/login', (req, res) => {
+router.post('/login', withAuth, (req, res) => {
     console.log('=============');
     console.log(req.body);
     console.log('=============');
@@ -94,7 +95,7 @@ router.post('/login', (req, res) => {
 });
 
 //logout user and destroy cookie session
-router.post('/logout', (req, res) => {
+router.post('/logout', withAuth, (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();

@@ -39,7 +39,7 @@ router.get('/', withAuth, (req, res) => {
 });
 
 //add a ticket to user account through concert_id
-router.post('/add', (req, res) => {
+router.post('/add', withAuth, (req, res) => {
     Ticket.create({
         user_id: req.body.user_id,
         concert_id: req.body.concert_id

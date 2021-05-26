@@ -1,11 +1,11 @@
 // api routes to access ticket data
-
 const router = require('express').Router();
+const withAuth = require('../../utils/auth');
 const { Ticket, User, Concert } = require('../../models');
 const chalk = require('chalk');
 
 // getting all tickets...
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     Ticket.findAll({
 
     })
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 });
 
 // getting tickets by id...
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
     Ticket.findOne({
         where: {
             id: req.params.id
@@ -56,7 +56,7 @@ router.get('/:id', (req, res) => {
     });
 
 //delete ticket
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Ticket.destroy(
         {
             where: {
