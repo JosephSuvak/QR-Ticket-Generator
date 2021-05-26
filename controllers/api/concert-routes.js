@@ -2,6 +2,7 @@
 const router = require('express').Router();
 const { Concert, Ticket, User } = require('../../models');
 const chalk = require('chalk');
+const withAuth = require('../../utils/auth')
 
 // getting all concerts and render them to concert.handlebars
 // this is called from concert.js which has a listener in
@@ -63,5 +64,30 @@ router.get('/:id', (req, res) => {
             res.status(500).json(err);
         });
 });
+
+// Updating concerts stock
+router.put('/:id',(req, res) => {
+    Concert.update(
+        {
+            stock: req.body.stock
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbConcertData => {
+            if (!dbConcertData) {
+                res.status(404).json({ message: 'No post found with this id' });
+                return;
+            }
+            res.json(dbConcertData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+})
 
 module.exports = router;
