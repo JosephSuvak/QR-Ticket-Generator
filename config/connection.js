@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 
 require('dotenv').config();
-const world = 50 
 
 // create connection to db
 // each team member will need to create a .env folder in their local
