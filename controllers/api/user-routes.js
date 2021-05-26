@@ -26,7 +26,7 @@ router.get('/:id', withAuth, (req, res) => {
                 model: Ticket,
                 attributes: ['id','concert_id'],
                 include: {model: Concert, 
-                    attributes: ['concert_name']
+                    attributes: ['concert_name', 'concert_date']
                 }
             },
 

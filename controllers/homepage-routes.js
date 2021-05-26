@@ -13,6 +13,7 @@ router.get('/', withAuth, (req, res) => {
         'id',
         'venue_name',
         'concert_name',
+        'concert_date',
         'stock'
       ]
     })
@@ -40,20 +41,12 @@ router.get('/qr_code', withAuth, (req, res) => {
 })
   
 //sign up link unless there is already a session
-router.get('/signup', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/account');
-    return;
-  }
+router.get('/signup', withLoggedIn, (req, res) => {
   res.render('signup');
 });
 
 //login unless there is already a session then take to homepage
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/account');
-    return;
-  }
+router.get('/login', withLoggedIn, (req, res) => {
   //render handlebars login page
   res.render('login');
 });

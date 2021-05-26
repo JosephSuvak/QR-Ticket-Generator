@@ -10,7 +10,7 @@ const withAuth = require('../../utils/auth');
 // you DO HAVE to pass in all these attributes or they will not be passed to handlebar.
 router.get('/', withAuth, (req, res) => {
     Concert.findAll({
-        attributes: ['id', 'venue_name', 'concert_name', 'stock', 'created_at'],
+        attributes: ['id', 'venue_name', 'concert_name', 'stock', 'concert_date'],
     })
         .then(dbConcertData => {
           
@@ -40,7 +40,7 @@ router.get('/:id', withAuth, (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'venue_name', 'concert_name', 'stock', 'created_at'],
+        attributes: ['id', 'venue_name', 'concert_name', 'stock', 'concert_date'],
     })
         .then(dbConcertData => {
             if (!req.session.loggedIn) {
@@ -66,10 +66,11 @@ router.get('/:id', withAuth, (req, res) => {
 });
 
 // Updating concerts stock
+
 router.put('/:id', withAuth, (req, res) => {
     Concert.update(
         {
-            stock: req.body.stock
+            stock: stock
         },
         {
             where: {

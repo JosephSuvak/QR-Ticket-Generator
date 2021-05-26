@@ -25,7 +25,7 @@ router.get('/:id', withAuth, (req, res) => {
         include: [
             {
                 model: Concert,
-                attributes: ['id', 'venue_name', 'concert_name', 'created_at']
+                attributes: ['id', 'venue_name', 'concert_name', 'concert_date']
             },
             {
                 model: User,
@@ -78,5 +78,28 @@ router.delete('/:id', withAuth, (req, res) => {
         });
 })
 
+
+//delete ticket
+router.delete('/:id', (req, res) => {
+    Ticket.destroy(
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbTicketData => {
+        if (!dbTicketData) {
+            res.status(404).json({ message: 'No ticket found with this id' });
+            return;
+        }
+            res.json(dbTicketData);
+            res.render('/account/');
+    })
+        .catch(err => {
+            console.log(chalk.cyanBright(err + ' This error is in ticket-routes.js delete ticket route.'));
+            res.status(500).json(err);
+        });
+})
 
 module.exports = router;
