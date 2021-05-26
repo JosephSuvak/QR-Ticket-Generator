@@ -1,6 +1,6 @@
 // api routes for concert data
 const router = require('express').Router();
-const { Concert, Ticket, User } = require('../../models');
+const { Concert } = require('../../models');
 const chalk = require('chalk');
 const withAuth = require('../../utils/auth');
 
