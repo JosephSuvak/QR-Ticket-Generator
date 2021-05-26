@@ -38,7 +38,11 @@
     
     <li>
       {{> ticket-info ticket}}
+      <a href="/api/ticket/{{ticket.id}}"
+        class="view_concert text-black bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 text-xl font-extrabold rounded-xl p-2">VIEW
+        TICKET</a>
     </li>
+    
     {{/each}}
   </ol>
 </section>

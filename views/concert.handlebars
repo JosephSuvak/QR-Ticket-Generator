@@ -27,17 +27,24 @@
 </div>
 {{#unless concerts.length}}
 <div class="flex justify-center">
-  <h3 class="m-5 text-5xl text-red-500 font-mono font-extrabold">No concerts currently, very sad.</h3>
+  <h3 class="m-5 text-5xl text-red-500 font-mono font-extrabold">No concerts found currently, very sad.</h3>
 </div>
 {{/unless}}
 {{#if concerts.length}}
 <section>
-  <ol class="space-y-4">
+  <input name="userID" class="hidden" type="text" value="{{user_id}}">
+  <ol id="concert-list" class="space-y-4">
     {{#each concerts as |concert|}}
 
-    <li>
+    <li id="{{concert.id}}">
+      <input name="concertID" class="hidden" type="text" value="{{concert.id}}">
       {{> concert-info concert}}
     </li>
+    <div class="m-4 text-black">
+      <a href="/api/concert/{{id}}"
+        class="view_concert text-black bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 text-xl font-extrabold rounded-xl p-2">VIEW
+        SHOW</a>
+    </div>
     {{/each}}
   </ol>
 </section>

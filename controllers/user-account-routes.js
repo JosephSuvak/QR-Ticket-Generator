@@ -3,11 +3,14 @@ const router = require('express').Router();
 const { User, Ticket, Concert } = require('../models');
 //check for a cookie session before giving them access
 const withAuth = require('../utils/auth');
+const chalk = require('chalk');
 
 
 // get all tickets for user account
 router.get('/', withAuth, (req, res) => {
     console.log('======================');
+    console.log(chalk.cyan(req.session.user_id));
+    
     Ticket.findAll({
         where: {
             user_id: req.session.user_id
@@ -36,6 +39,22 @@ router.get('/', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 });
+
+//add a ticket to user account through concert_id
+router.post('/add', (req, res) => {
+    Ticket.create({
+        user_id: req.body.user_id,
+        concert_id: req.body.concert_id
+    })
+        .then(dbTicketData => {
+            res.json(dbTicketData);
+        })
+        .catch(err => {
+
+            console.log(chalk.redBright(err + 'This error is coming from user-account-routes.js, in the Ticket.create method.'));
+            res.status(500).json(err);
+        });
+})
 
 
 

@@ -17,7 +17,7 @@ async function loginFormHandler(event) {
     });
     // if user exist and password is there and correct take them to their account
     if (response.ok) {
-      document.location.replace('/account/');
+      document.location.replace('account');
     } else {
       alert(response.statusText);
     }
