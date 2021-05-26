@@ -2,13 +2,13 @@
 const router = require('express').Router();
 const { Concert, Ticket, User } = require('../../models');
 const chalk = require('chalk');
-const withAuth = require('../../utils/auth')
+const withAuth = require('../../utils/auth');
 
 // getting all concerts and render them to concert.handlebars
 // this is called from concert.js which has a listener in
 // account.handlebars (the user's after login homepage basically)
 // you DO HAVE to pass in all these attributes or they will not be passed to handlebar.
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     Concert.findAll({
         attributes: ['id', 'venue_name', 'concert_name', 'stock', 'created_at'],
     })
@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
 });
 
 // getting concerts by id...
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
     Concert.findOne({
         where: {
             id: req.params.id
@@ -66,7 +66,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Updating concerts stock
-router.put('/:id',(req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Concert.update(
         {
             stock: req.body.stock

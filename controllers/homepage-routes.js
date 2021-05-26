@@ -4,9 +4,9 @@ const sequelize = require('../config/connection');
 const { User, Ticket, Concert } = require('../models');
 const chalk = require('chalk');
 const QRCode = require('qrcode');
+const withAuth = require('../../utils/auth');
 
-
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     console.log(req.session);
     Concert.findAll({
       attributes: [
@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 });
 
 //renders the qr code page in qr_code.handlebars after <view qr code> is selected.
-router.get('/qr_code', (req, res) => {
+router.get('/qr_code', withAuth, (req, res) => {
   if (!req.session.loggedIn) {
     res.redirect('/login');
     return;
@@ -59,7 +59,7 @@ router.get('/login', (req, res) => {
 });
 
 //get qr code
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
     Ticket.findOne({
       where: {
         id: req.params.id
