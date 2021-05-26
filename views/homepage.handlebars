@@ -1,0 +1,87 @@
+<header class="relative h-48 m-8 overflow-hidden rounded-lg bg-black shadow-xl">
+  <div class="absolute z-30 flex w-full h-full">
+    <div class="relative z-30 w-5/6 px-6 py-8 text-white md:py-10 md:w-1/2 sm:py-4 sm:w-full">
+      <h2 class="m-4 text-5xl">QRater</h2>
+      {{#unless loggedIn}}
+      <div class="m-4">
+        <a href="/signup" class="bg-yellow-400 rounded p-2 mt-5 text-black">
+          Sign Up
+        </a> 
+        <a href="/login" class="bg-yellow-400 text-black rounded p-2 ml-5">
+         Log In
+        </a>
+      </div>
+      {{/unless}}
+      {{#if loggedIn}}
+      <div class="m-4">
+        <a href="/account" class="bg-yellow-400 rounded p-2 mt-5 text-black">
+          My Account
+        </a>
+      </div>
+      {{/if}}
+    </div>
+    <div
+    <div class="absolute top-0 right-0 flex w-full h-full">
+      <div class="w-1/3 h-full bg-black"></div>
+      <div class="relative w-1/3">
+        <svg fill="currentColor" viewBox="0 0 100 100" class="absolute inset-y-0 z-20 h-full text-black">
+          <polygon id="diagonal" points="0,0 100,0 50,100 0,100"></polygon>
+        </svg>
+        <svg fill="currentColor" viewBox="0 0 100 100"
+          class="absolute inset-y-0 z-10 h-full ml-6 text-white opacity-50">
+          <polygon points="0,0 100,0 50,100 0,100"></polygon>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="absolute top-0 right-0 block w-9/12 h-full">
+    <img alt="full moon" class="object-cover min-w-full h-full" src="/assets/images/q_rater_moon.jpg" />
+  </div>
+</header>
+<div class=" h-48  m-8 rounded-xl bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 shadow-xl">
+  <div class="w-full h-full pt-14">
+    <div class="grid grid-rows-2 place-items-center text-black">
+      <h2 class="lg:text-5xl md:text-4xl sm:text-3xl p-3">QR Code tickets for the shows you love!</h2>
+    </div>
+  </div>
+</div>
+<div class=" text-white font-semibold text-xl">
+  <div class="relative h-96 m-8  overflow-scroll rounded-lg bg-black shadow-xl">
+    <div class="absolute z-30 flex w-full h-full">
+      <div class="relative z-30 w-5/6 px-6 py-8 text-white md:py-10 md:w-1/2">
+        <span>Here at QRater (pronounced 'Crater'), we go to the moon and back for our customers. Are you tired of
+          waiting in long
+          lines, the day of the show?
+          Are you tired of feeling anxious, waiting for your concert tickets to arrive by mail, or even worse, lost
+          or
+          stolen! <br />
+          <br />
+          We
+          live in a digital age and need <br /> <br /> <strong
+            class="text-2xl text-black font-mono p-2 m-2 rounded bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">DIGITAL</strong>
+          <br /> <strong
+            class="font-mono p-1 m-2 text-black text-2xl rounded bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">SOLUTIONS</strong>
+          <br /> <br /> for these problems.
+          QRater lets you save a unique QR code for your favorite upcoming shows! Simply create an account, choose a
+          venue or show
+          and you are ready to rock!</span>
+      </div>
+      <div class="absolute top-0 right-0 flex w-full h-full">
+        <div class="w-1/3 h-full bg-black"></div>
+        <div class="relative w-1/3">
+          <svg fill="currentColor" viewBox="0 0 100 100" class="absolute inset-y-0 z-20 h-full text-black">
+            <polygon id="diagonal" points="0,0 100,0 50,100 0,100"></polygon>
+          </svg>
+          <svg fill="currentColor" viewBox="0 0 100 100"
+            class="absolute inset-y-0 z-10 h-full ml-6 text-white opacity-50">
+            <polygon points="0,0 100,0 50,100 0,100"></polygon>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="absolute top-0 right-0 block w-9/12 h-full">
+      <img alt="concert crowd" class="object-cover w-full h-full" src="/assets/images/crowd_control.jpg" />
+    </div>
+  </div>
+</div>
+
