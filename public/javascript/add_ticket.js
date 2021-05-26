@@ -19,41 +19,80 @@ async function newTicketHandler(event) {
       'Content-Type': 'application/json'
     }
   });
+
+  const stock = document.querySelector('#stock').textContent; 
+
+  const id = window.location.toString().split('/')[
+    window.location.toString().split('/').length - 1
+  ];
+
+  console.log(stock);
+
+  const responseTwo = await fetch(`/api/concert/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        stock
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  
   //if ok go to dashboard where you should see the new post
   if (response.ok) {
     document.location.replace('/account');
-    stockDecreaser();
   } else {
     alert(response.statusText);
   }
 }
 
-async function removeTicketFromStockHandler(event) {
-  event.preventDefault();
+// async function removeTicketFromStockHandler(event) {
+//   event.preventDefault();
 
-  const oldStock = document.querySelector('#stock').value; 
-  // Get new stock (current - 1);
-  const stock = oldStock - 1;
-  console.log(oldStock);
-  console.log(stock);
-    fetch(`/api/concert/${concert_id}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      stock: stock
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(ConcertDataResponse => {
-    console.log(ConcertDataResponse);
+//   const oldStock = document.querySelector('#stock').value; 
+//     fetch(`/api/concert/${concert_id}`, {
+//     method: 'PUT',
+//     body: JSON.stringify({
+//       stock: stock
+//     }),
+//     headers: {
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//   .then(ConcertDataResponse => {
+//     console.log(ConcertDataResponse);
 
-  })
-  .catch(err => {
-    console.log(err);
-  });
-}
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+// }
 
+// async function removeTicketFromStockHandler(event) {
+//     event.preventDefault();
+  
+//     const stock = document.querySelector('#stock').value; 
+//     const id = window.location.toString().split('/')[
+//       window.location.toString().split('/').length - 1
+//     ];
+//     const response = fetch(`/api/concert/${id}`, {
+//       method: 'PUT',
+//       body: JSON.stringify({
+//         stock
+//       }),
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     });
+    
+//     if (response.ok) {
+//       document.location.replace('/dashboard/');
+//       } else {
+//         alert(response.statusText);
+//       }
+//     })
+//   }
+  
 
 // const stockDecreaser = () => {
 //   const oldStock = document.querySelector('#stock').value;
@@ -81,4 +120,4 @@ async function removeTicketFromStockHandler(event) {
 //   });
 //}
 //create new post listener
-document.querySelector('#single_concert').addEventListener('click', newTicketHandler, removeTicketFromStockHandler);
+document.querySelector('#single_concert').addEventListener('click', newTicketHandler);

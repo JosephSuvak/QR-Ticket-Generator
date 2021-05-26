@@ -67,9 +67,11 @@ router.get('/:id', (req, res) => {
 
 // Updating concerts stock
 router.put('/:id',(req, res) => {
+    const stock = JSON.parse(req.body.stock) - 1;
+
     Concert.update(
         {
-            stock: req.body.stock
+            stock: stock
         },
         {
             where: {
