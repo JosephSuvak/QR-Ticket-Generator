@@ -10,7 +10,7 @@ const chalk = require('chalk');
 router.get('/', withAuth, (req, res) => {
     console.log('======================');
     console.log(chalk.cyan(req.session.user_id));
-    
+
     Ticket.findAll({
         where: {
             user_id: req.session.user_id
@@ -32,6 +32,7 @@ router.get('/', withAuth, (req, res) => {
         //render all tickets to the account that belong to the current user
         .then(dbTicketData => {
             const tickets = dbTicketData.map(ticket => ticket.get({ plain: true }));
+
             res.render('account', { tickets, loggedIn: true });
         })
         .catch(err => {
@@ -54,9 +55,8 @@ router.post('/add', (req, res) => {
             console.log(chalk.redBright(err + 'This error is coming from user-account-routes.js, in the Ticket.create method.'));
             res.status(500).json(err);
         });
-})
 
-
+});
 
 // getting all users...
 router.get('/user', (req, res) => {
