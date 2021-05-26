@@ -35,7 +35,7 @@ router.get('/:id', withAuth, (req, res) => {
 });
 
 //create user
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
     User.create({
         email: req.body.email,
         password: req.body.password
@@ -58,7 +58,7 @@ router.post('/', withAuth, (req, res) => {
 
 //login user: need to create a session and we can't find their id until we 
 //have access in another way so, email
-router.post('/login', withAuth, (req, res) => {
+router.post('/login',  (req, res) => {
     console.log('=============');
     console.log(req.body);
     console.log('=============');

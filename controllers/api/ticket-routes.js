@@ -3,6 +3,7 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 const { Ticket, User, Concert } = require('../../models');
 const chalk = require('chalk');
+const QRCode = require('qrcode');
 
 // getting all tickets...
 router.get('/', withAuth, (req, res) => {
@@ -18,6 +19,15 @@ router.get('/', withAuth, (req, res) => {
 
 // getting tickets by id...
 router.get('/:id', withAuth, (req, res) => {
+    const concert = JSON.stringify(req.params.id);
+    const qr = (concert) => {
+        QRCode.toFile('public/assets/images/qr_code_ticket.png', concert, {
+        }, function (err) {
+            if (err) throw err
+            console.log(chalk.cyanBright('qr created'));
+        });
+    }
+    qr(concert);
     Ticket.findOne({
         where: {
             id: req.params.id
