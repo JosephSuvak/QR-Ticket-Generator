@@ -9,7 +9,7 @@ const chalk = require('chalk');
 // you DO HAVE to pass in all these attributes or they will not be passed to handlebar.
 router.get('/', (req, res) => {
     Concert.findAll({
-        attributes: ['id', 'venue_name', 'concert_name', 'stock', 'created_at'],
+        attributes: ['id', 'venue_name', 'concert_name', 'stock', 'concert_date'],
     })
         .then(dbConcertData => {
           
@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
         }
         const concerts = dbConcertData.map(concert => concert.get({ plain: true }));
         //render handlebars home page
+        console.log(concerts);
         res.render('concert', {
             concerts,
             loggedIn: req.session.loggedIn,
@@ -39,7 +40,7 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'venue_name', 'concert_name', 'stock'],
+        attributes: ['id', 'venue_name', 'concert_name', 'stock', 'concert_date'],
     })
         .then(dbConcertData => {
             if (!req.session.loggedIn) {

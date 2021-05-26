@@ -18,8 +18,7 @@ router.get('/', withAuth, (req, res) => {
         attributes: [
             'id',
             'user_id',
-            'concert_id',
-            'concert_date'
+            'concert_id'
         ],
         include: [
             {

@@ -5,7 +5,7 @@ const concertdata = [
   {
     venue_name: 'Wild Horse',
     concert_name: 'John Prine',
-    concert_date: '09/10/21',
+    concert_date: '10/10/22',
     stock: 100,
   },
   {
@@ -41,9 +41,10 @@ const concertdata = [
   {
     venue_name: 'The 5 Spot',
     concert_name: 'Phish',
-    show_date: '09/10/22',
+    concert_date: '09/10/22',
     stock: 100,
   },
+
   {
     venue_name: 'BridgeStone',
     concert_name: 'Wu-Tang',
@@ -63,6 +64,7 @@ const concertdata = [
     stock: 100,
   }
 ];
+
 
 const seedConcert = () => Concert.bulkCreate(concertdata);
 
