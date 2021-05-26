@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
         }
         const concerts = dbConcertData.map(concert => concert.get({ plain: true }));
         //render handlebars home page
-        console.log(concerts);
         res.render('concert', {
             concerts,
             loggedIn: req.session.loggedIn,
