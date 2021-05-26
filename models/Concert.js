@@ -29,6 +29,13 @@ Concert.init(
         len: [1]
       }
     },
+    concert_date: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
     stock: {
       type: DataTypes.INTEGER,
       defaultValue: 100,

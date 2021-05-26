@@ -4,7 +4,6 @@ const apiRoutes = require('./api');
 const homeRoutes = require('./homepage-routes.js');
 const userAccountRoutes = require('./user-account-routes');
 
-
 //routes for the javascript/handlebars files to use
 router.use('/account', userAccountRoutes);
 router.use('/api', apiRoutes);

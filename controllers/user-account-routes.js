@@ -10,7 +10,6 @@ const chalk = require('chalk');
 router.get('/', withAuth, (req, res) => {
     console.log('======================');
     console.log(chalk.cyan(req.session.user_id));
-
     Ticket.findAll({
         where: {
             user_id: req.session.user_id
@@ -18,13 +17,12 @@ router.get('/', withAuth, (req, res) => {
         attributes: [
             'id',
             'user_id',
-            'concert_id',
-            'created_at'
+            'concert_id'
         ],
         include: [
             {
                 model: Concert,
-                attributes: ['id', 'venue_name', 'concert_name', 'stock', 'created_at'],
+                attributes: ['id', 'venue_name', 'concert_name', 'stock', 'concert_date'],
             }
 
         ]
@@ -32,7 +30,6 @@ router.get('/', withAuth, (req, res) => {
         //render all tickets to the account that belong to the current user
         .then(dbTicketData => {
             const tickets = dbTicketData.map(ticket => ticket.get({ plain: true }));
-
             res.render('account', { tickets, loggedIn: true });
         })
         .catch(err => {
@@ -84,7 +81,7 @@ router.get('/:id', (req, res) => {
             },
             {
                 model: Concert,
-                attributes: ['id', 'venue_name', 'concert_name']
+                attributes: ['id', 'venue_name', 'concert_name', 'stock', 'concert_date']
             }
 
         ]

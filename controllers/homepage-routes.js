@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
         'id',
         'venue_name',
         'concert_name',
+        'concert_date',
         'stock'
       ]
     })
