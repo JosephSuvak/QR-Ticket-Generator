@@ -1,16 +1,14 @@
 <div class="relative h-48 m-8 overflow-hidden rounded-lg bg-white shadow-xl">
   <div class="absolute z-30 flex w-full h-full">
     <div class="relative z-30 w-5/6 px-6 py-8 text-white md:py-10 md:w-1/2 sm:py-4 sm:w-full">
-      <h2 class="text-2xl text-black font-mono font-thin">
-        {{concert.concert_name}}
-      </h2>
+      <input name="concertName" class="text-2xl text-black font-mono font-thin" value="{{concert.concert_name}}">
       <p class="text-lg font-mono text-black">
         Live at: {{ concert.venue_name }}
       </p>
       <p class="font-mono text-black">
         Show Date:
         <span class="font-mono text-red-400">
-          {{format_date created_at}}
+          {{format_date concert.created_at}}
         </span>
       </p>
     </div>
