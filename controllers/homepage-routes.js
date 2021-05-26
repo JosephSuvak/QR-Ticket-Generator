@@ -4,9 +4,10 @@ const sequelize = require('../config/connection');
 const { User, Ticket, Concert } = require('../models');
 const chalk = require('chalk');
 const QRCode = require('qrcode');
-const withAuth = require('../../utils/auth');
+const withAuth = require('../utils/auth');
+const withLoggedIn = require('../utils/loggedIn');
 
-router.get('/', withAuth, (req, res) => {
+router.get('/', (req, res) => {
     console.log(req.session);
     Concert.findAll({
       attributes: [
