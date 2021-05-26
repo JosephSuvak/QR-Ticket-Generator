@@ -4,6 +4,7 @@ const sequelize = require('../config/connection');
 const { User, Ticket, Concert } = require('../models');
 const chalk = require('chalk');
 const QRCode = require('qrcode');
+const withLoggedIn = require('../utils/loggedIn');
 
 
 router.get('/', (req, res) => {
@@ -41,20 +42,12 @@ router.get('/qr_code', (req, res) => {
 })
   
 //sign up link unless there is already a session
-router.get('/signup', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/account');
-    return;
-  }
+router.get('/signup', withLoggedIn, (req, res) => {
   res.render('signup');
 });
 
 //login unless there is already a session then take to homepage
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/account');
-    return;
-  }
+router.get('/login', withLoggedIn, (req, res) => {
   //render handlebars login page
   res.render('login');
 });
