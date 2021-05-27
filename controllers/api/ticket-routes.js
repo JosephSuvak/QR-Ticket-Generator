@@ -80,7 +80,7 @@ router.delete('/:id', (req, res) => {
             return;
         }
             res.json(dbTicketData);
-            res.render('/account/');
+            res.render('/');
     })
         .catch(err => {
             console.log(chalk.cyanBright(err + ' This error is in ticket-routes.js delete ticket route.'));

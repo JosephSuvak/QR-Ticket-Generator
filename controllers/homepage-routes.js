@@ -30,7 +30,7 @@ router.get('/login', withLoggedIn, (req, res) => {
 });
 
 //validate the qrcode as an example
-router.get('/:id', withAuth, (req, res) => {
+router.get('/:id',  (req, res) => {
   console.log(chalk.magentaBright(req.params.id))
   Ticket.findOne({
     where: {
