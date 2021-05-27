@@ -55,4 +55,9 @@ router.post('/add', withAuth, (req, res) => {
 
 });
 
+//redeem ticket handlebars
+router.get('/redeemed', (req, res) => {
+    res.render('redeemed');
+});
+
 module.exports = router;

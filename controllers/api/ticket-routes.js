@@ -66,7 +66,7 @@ router.get('/:id', withAuth, (req, res) => {
     });
 
 //delete ticket
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     Ticket.destroy(
         {
             where: {
