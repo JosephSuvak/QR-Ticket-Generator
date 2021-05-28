@@ -18,8 +18,9 @@ router.get('/', withAuth, (req, res) => {
 });
 
 // getting tickets by id...
-router.get('/:id', withAuth, (req, res) => {
-    const concert = JSON.stringify(req.params.id);
+router.get('/:id', (req, res) => {
+    const concert = req.params.id;
+    console.log(chalk.magentaBright(concert));
     const qr = (concert) => {
         QRCode.toFile('public/assets/images/qr_code_ticket.png', `https://calm-escarpment-47526.herokuapp.com/${concert}`, {
         }, function (err) {
