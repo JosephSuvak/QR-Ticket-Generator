@@ -70,7 +70,7 @@ router.get('/:id', withAuth, (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
     Concert.update(
         {
-            stock: stock
+            stock: req.body.stock
         },
         {
             where: {
