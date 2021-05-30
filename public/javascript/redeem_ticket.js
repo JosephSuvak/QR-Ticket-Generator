@@ -11,7 +11,7 @@ async function redeemTicketHandler(event) {
   });
   //after deleting take to user comments to display successful deletion
   if (response.ok) {
-    document.location.replace('/account/redeemed');
+    document.location.replace('/redeemed');
   } else {
     console.log(chalk.bgMagentaBright('Not working.'))
     alert(response.statusText);
