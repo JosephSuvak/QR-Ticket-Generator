@@ -1009,6 +1009,18 @@ video {
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
+/* Custom CSS Start */
+#sign-up:hover {
+  color:#3b82f6;
+
+}
+
+#login:hover {
+  color:#3b82f6;
+}
+
+/* Custom CSS End */
+
 @-webkit-keyframes spin {
   to {
     transform: rotate(360deg);

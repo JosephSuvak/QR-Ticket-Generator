@@ -66,40 +66,45 @@ async function newTicketHandler(event) {
   const concert = document.querySelector('input[name="concertName"]').value;
 
   const stock = JSON.parse(document.querySelector('#stock').textContent) - 1; 
+  // if stock is greater than or equal to 0
+  if (stock >= 0) {
+    // Send fetch request to update stock
+    const responseConcertStock = await fetch(`/api/concert/${concert_id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          stock: stock
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    // if that response was good
+    if (responseConcertStock.ok) {
+      // Send post request to create new ticket
+      const responseAddTicket = await fetch(`/account/add`, {
+        method: 'POST',
+        body: JSON.stringify({
+          user_id,
+          concert_id,
+          concert
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
-  const responseConcertStock = await fetch(`/api/concert/${concert_id}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        stock: stock
-      }),
-      headers: {
-        'Content-Type': 'application/json'
+
+      //if ok go to dashboard where you should see the new post
+      if (responseAddTicket.ok) {
+        document.location.replace('/account');
+      } else {
+        alert(responseAddTicket.statusText);
       }
-    });
-  
-  if (responseConcertStock.ok) {
-    //create new
-    const responseAddTicket = await fetch(`/account/add`, {
-      method: 'POST',
-      body: JSON.stringify({
-        user_id,
-        concert_id,
-        concert
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-
-    //if ok go to dashboard where you should see the new post
-    if (responseAddTicket.ok) {
-      document.location.replace('/account');
     } else {
-      alert(response.statusText);
+      alert(responseConcertStock.statusText);
     }
   } else {
-    alert(responseConcertStock.statusText);
+    alert("Out of Stock!");
   }
 }
 
