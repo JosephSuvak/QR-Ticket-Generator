@@ -1,3 +1,6 @@
+//this has the stock functions started but they do not work correctly yet for full functionality,
+//add to enhancements
+
 //add a concert to the user account
 async function newTicketHandler(event) {
   event.preventDefault();
@@ -23,23 +26,23 @@ async function newTicketHandler(event) {
     }
   });
 
-  const stock = document.querySelector('#stock').textContent; 
+  // const stock = document.querySelector('#stock').textContent; 
 
   const id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
   ];
 
-  console.log(stock);
+  // console.log(stock);
 
-  const responseTwo = await fetch(`/api/concert/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        stock
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+  // const responseTwo = await fetch(`/api/concert/${id}`, {
+  //     method: 'PUT',
+  //     body: JSON.stringify({
+  //       stock
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   });
   
   //if ok go to dashboard where you should see the new post
   if (response.ok) {

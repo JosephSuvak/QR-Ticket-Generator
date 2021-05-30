@@ -5,19 +5,11 @@ const { Ticket, User, Concert } = require('../../models');
 const chalk = require('chalk');
 const QRCode = require('qrcode');
 
-// getting all tickets...
-router.get('/', withAuth, (req, res) => {
-    Ticket.findAll({
-
-    })
-        .then(dbTicketData => res.json(dbTicketData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-// getting tickets by id...
+// getting tickets by id with authorization, which also creates a qr_code
+// it renders the qr code correctly, but this should be moved to a conttroller file, for 
+// proper mvc seperation, as it renders a view. Also the redeeming of a qr code should happen on a different user
+//account, perhaps an admin account of sorts. Also some feedback included giving this function scalibility, by creating a different method 
+//for access to the qr code. Possibly a string that is created and saved in the database with that specific ticket? Future enhancements.
 router.get('/:id', withAuth, (req, res) => {
     const concert = JSON.stringify(req.params.id);
     const qr = (concert) => {

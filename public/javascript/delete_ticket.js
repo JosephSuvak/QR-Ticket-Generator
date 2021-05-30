@@ -13,7 +13,6 @@ async function newDeleteTicketHandler(event) {
   if (response.ok) {
     document.location.replace('/account');
   } else {
-    console.log(chalk.bgMagentaBright('Not working.'))
     alert(response.statusText);
   }
 }
