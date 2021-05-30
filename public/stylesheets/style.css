@@ -1009,6 +1009,9 @@ video {
   grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
+/* added css style variable from Manny's feature/styles */
+
+
 @-webkit-keyframes spin {
   to {
     transform: rotate(360deg);
