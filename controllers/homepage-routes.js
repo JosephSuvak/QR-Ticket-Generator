@@ -44,9 +44,6 @@ router.get('/:id', (req, res) => {
     ]
   })
     .then(dbTicketData => {
-      if (!dbTicketData) {
-        console.log(chalk.redBright('No ticket located this is ticket-routes.'))
-      }
       const ticket = dbTicketData.get({ plain: true });
       //render handlebars home page
       res.render('validate_ticket', {
