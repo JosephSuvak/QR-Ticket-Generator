@@ -5,23 +5,18 @@
 {{/unless}}
 {{#if ticket}}
 <section>
-  <ol  class="space-y-4">
+  <ol class="space-y-4">
     <li id="{{ticket.id}}">
       {{> ticket-info ticket}}
     </li>
-    <div id="qr_ticket">
-      <a href="/qr_code"
-        class="text-black bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 text-xl font-extrabold rounded-xl p-2 m-2"
-        type="submit">VIEW QR CODE</a>
-    </div>
-    <div id="delete_ticket">
+    <div id="redeem_ticket">
       <button
         class="text-black bg-gradient-to-r from-red-700 via-red-400 to-red-700 text-xl font-extrabold rounded-xl p-2 m-2"
-        type="submit">DELETE TICKET</button>
+        type="submit">REDEEM TICKET</button>
     </div>
   </ol>
 </section>
 {{/if}}
 
 
-<script src="/javascript/delete_ticket.js"></script>
+<script src="/javascript/redeem_ticket.js"></script>

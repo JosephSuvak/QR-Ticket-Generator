@@ -3,6 +3,7 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 const { Ticket, User, Concert } = require('../../models');
 const chalk = require('chalk');
+const QRCode = require('qrcode');
 
 // getting all tickets...
 router.get('/', withAuth, (req, res) => {
@@ -18,6 +19,15 @@ router.get('/', withAuth, (req, res) => {
 
 // getting tickets by id...
 router.get('/:id', withAuth, (req, res) => {
+    const concert = JSON.stringify(req.params.id);
+    const qr = (concert) => {
+        QRCode.toFile('public/assets/images/qr_code_ticket.png', `https://qrater-staging.herokuapp.com/api/ticket/${concert}`, {
+        }, function (err) {
+            if (err) throw err
+            console.log(chalk.cyanBright('qr created'));
+        });
+    }
+    qr(concert);
     Ticket.findOne({
         where: {
             id: req.params.id
@@ -54,30 +64,6 @@ router.get('/:id', withAuth, (req, res) => {
             res.status(500).json(err);
         });
     });
-
-//delete ticket
-router.delete('/:id', withAuth, (req, res) => {
-    Ticket.destroy(
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-        .then(dbTicketData => {
-        if (!dbTicketData) {
-            res.status(404).json({ message: 'No ticket found with this id' });
-            return;
-        }
-            res.json(dbTicketData);
-            res.render('/account/');
-    })
-        .catch(err => {
-            console.log(chalk.cyanBright(err + ' This error is in ticket-routes.js delete ticket route.'));
-            res.status(500).json(err);
-        });
-})
-
 
 //delete ticket
 router.delete('/:id', (req, res) => {

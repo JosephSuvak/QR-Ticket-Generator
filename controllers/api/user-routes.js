@@ -1,41 +1,10 @@
 // api routes to get data from the user table
 const router = require('express').Router();
-const { User, Ticket, Concert } = require('../../models');
+const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// getting all users...
-router.get('/', withAuth, (req, res) => {
-    User.findAll({
-        attributes: { exclude: ['password'] }
-    })
-        .then(dbUserData => res.json(dbUserData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-// getting users by id...
-router.get('/:id', withAuth, (req, res) => {
-    User.findOne({
-        attributes: { exclude: ['password'] },
-        where: {
-            id: req.params.id
-        },
-        include: [
-            {
-                model: Ticket,
-                attributes: ['id','concert_id'],
-                include: {model: Concert, 
-                    attributes: ['concert_name', 'concert_date']
-                }
-            },
-
-        ]
-    })
-});
-
 //create user
-router.post('/', withAuth, (req, res) => {
+router.post('/', (req, res) => {
     User.create({
         email: req.body.email,
         password: req.body.password
@@ -58,7 +27,7 @@ router.post('/', withAuth, (req, res) => {
 
 //login user: need to create a session and we can't find their id until we 
 //have access in another way so, email
-router.post('/login', withAuth, (req, res) => {
+router.post('/login',  (req, res) => {
     console.log('=============');
     console.log(req.body);
     console.log('=============');
@@ -79,7 +48,6 @@ router.post('/login', withAuth, (req, res) => {
             res.status(400).json({ message: 'Incorrect password!' });
             return;
         }
-
         //save session
         req.session.save(() => {
             req.session.user_id = dbUserData.id;

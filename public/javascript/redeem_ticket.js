@@ -1,5 +1,5 @@
 //add a concert to the user account
-async function newDeleteTicketHandler(event) {
+async function redeemTicketHandler(event) {
   event.preventDefault();
 
   //only need id which we get from url
@@ -11,11 +11,11 @@ async function newDeleteTicketHandler(event) {
   });
   //after deleting take to user comments to display successful deletion
   if (response.ok) {
-    document.location.replace('/account');
+    document.location.replace('/account/redeemed');
   } else {
     console.log(chalk.bgMagentaBright('Not working.'))
     alert(response.statusText);
   }
 }
 //create new post listener
-document.querySelector('#delete_ticket').addEventListener('click', newDeleteTicketHandler);
+document.querySelector('#redeem_ticket').addEventListener('click', redeemTicketHandler);
